@@ -16,6 +16,7 @@
     "@angular/common": "~10.2.0",
     "@angular/compiler": "~10.2.0",
     "@angular/core": "~10.2.0",
+    "@angular/fire": "^6.1.4",
     "@angular/forms": "~10.2.0",
     "@angular/platform-browser": "~10.2.0",
     "@angular/platform-browser-dynamic": "~10.2.0",
@@ -23,8 +24,10 @@
     "@nebular/eva-icons": "6.2.1",
     "@nebular/theme": "^6.2.1",
     "eva-icons": "^1.1.2",
+    "firebase": "^8.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "validators": "^0.3.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

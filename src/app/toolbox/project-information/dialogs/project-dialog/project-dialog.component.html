@@ -1,0 +1,17 @@
+<nb-card style="width: 30vw;">
+  <nb-card-header>Create new project</nb-card-header>
+  <nb-card-body>
+    <nb-form-field style="margin:10px;">
+      <input [formControl]="idControl" fullWidth placeholder="Project ID" nbInput>
+    </nb-form-field>
+    <nb-form-field style="margin:10px;">
+      <input [formControl]="nameControl" fullWidth placeholder="Name" nbInput>
+    </nb-form-field>
+    <nb-form-field style="margin:10px;">
+      <textarea [formControl]="descriptionControl" fullWidth placeholder="Description" nbInput></textarea>
+    </nb-form-field>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="primary" (click)="createProject()">Create</button>
+  </nb-card-footer>
+</nb-card>

@@ -10,12 +10,28 @@
     <nb-select placeholder="Select project" shape="rectangle" style="border-radius: 0; " size="small">
       <nb-option value="0">Demo 1</nb-option>
       <nb-option value="1">X-Ray Chest</nb-option>
+
     </nb-select>
-    <button nbButton size="small" shape="rectangle" style="border-radius: 0;">
+    <button *ngIf="!currentUser" (click)="login()" nbButton size="small" shape="rectangle" style="border-radius: 0;">
       <nb-icon icon="person"></nb-icon>
       Login
     </button>
+    <button *ngIf="currentUser" nbButton size="small" shape="rectangle" style="border-radius: 0;"
+      [nbPopover]="accountPopoverRef" nbPopoverPlacement="bottom">
+      <nb-icon icon="person"></nb-icon>
+      {{currentUser.displayName}}
+    </button>
+
   </nb-layout-header>
+  <ng-template #accountPopoverRef>
+    <div style="padding:10px">
+      <nb-user [picture]="currentUser.photoURL" [name]="currentUser.displayName" [title]="currentUser.email"
+        style="margin-bottom: 10px;"></nb-user>
+      <button nbButton (click)="signOut()" status="primary" size="small" fullWidth>
+        Sign out
+      </button>
+    </div>
+  </ng-template>
   <nb-sidebar>
     <b>Toolbox</b>
 

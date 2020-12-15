@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NbMenuItem, NbSidebarService } from '@nebular/theme';
-
+import * as firebase from 'firebase';
+import { ProjectService } from './services/project.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Vision Intelligence Console';
   menus: NbMenuItem[] = [
     {
@@ -71,5 +73,29 @@ export class AppComponent {
       ]
     },
   ];
-  constructor(public sidebarService: NbSidebarService) { }
+  constructor(public sidebarService: NbSidebarService, public auth: AngularFireAuth, public projectService: ProjectService) { }
+
+  ngOnInit(): void {
+    this.auth.authState.subscribe(async (user) => {
+      this.currentUser = user;
+      let pro = (await this.projectService.getProjects());
+      console.log(pro);
+    });
+  }
+
+  projects = [];
+  currentUser = null;
+
+  async login() {
+    await this.auth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider());
+    this.projects = (await this.projectService.getProjects())['projects'];
+    console.log(this.projects);
+  }
+
+  signOut() {
+    this.auth.signOut();
+    this.projects.length = 0;
+  }
+
+
 }

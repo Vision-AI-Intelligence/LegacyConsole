@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { ProjectDialogComponent } from './dialogs/project-dialog/project-dialog.component';
 
 @Component({
   selector: 'app-project-information',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectInformationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: NbDialogService) { }
 
   ngOnInit(): void {
+  }
+
+  openCreateProjectDialog() {
+    this.dialog.open(ProjectDialogComponent, { closeOnBackdropClick: true, hasBackdrop: true });
   }
 
 }
