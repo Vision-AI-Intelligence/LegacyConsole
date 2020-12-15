@@ -2,6 +2,21 @@
 <h2>
   Projects
 </h2>
+<div class="project-grid">
+  <nb-card *ngFor="let project of projects">
+    <nb-card-header>
+      {{project.id}}
+    </nb-card-header>
+    <nb-card-body>
+      {{project.name}}
+      <p>{{project.description}}</p>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" fullWidth>Select</button>
+    </nb-card-footer>
+  </nb-card>
+</div>
+
 <button nbButton status="primary" (click)="openCreateProjectDialog()">
   <nb-icon icon="plus-circle"></nb-icon>Create new project
 </button>

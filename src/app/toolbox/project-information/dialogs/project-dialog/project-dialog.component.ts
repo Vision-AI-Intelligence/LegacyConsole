@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, PatternValidator, RequiredValidator, Validators } from '@angular/forms';
-import { NbToastrService } from '@nebular/theme';
+import { NbDialogRef, NbToastrService } from '@nebular/theme';
 import { Project } from 'src/app/models/project.model';
 import { ProjectService } from 'src/app/services/project.service';
 
@@ -10,7 +10,7 @@ import { ProjectService } from 'src/app/services/project.service';
 })
 export class ProjectDialogComponent implements OnInit {
 
-  constructor(private toast: NbToastrService, private projectService: ProjectService) { }
+  constructor(private toast: NbToastrService, private projectService: ProjectService, private dialog: NbDialogRef<ProjectDialogComponent>) { }
 
   idControl: FormControl;
   nameControl: FormControl;
@@ -43,10 +43,12 @@ export class ProjectDialogComponent implements OnInit {
       return;
     }
     try {
-      let res = await this.projectService.createProject({ id: this.idControl.value, name: this.nameControl.value, description: this.descriptionControl.value });
+      await this.projectService.createProject({ id: this.idControl.value, name: this.nameControl.value, description: this.descriptionControl.value });
+      this.toast.success(`Project [${this.idControl.value}] was created`, "Success");
+      this.dialog.close();
     }
     catch (err) {
-      err.
+      this.toast.danger(err.error.message, `Cannot create project [${this.idControl.value}]`);
     }
   }
 

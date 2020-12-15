@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
+import { Project } from 'src/app/models/project.model';
+import { ProjectService } from 'src/app/services/project.service';
 import { ProjectDialogComponent } from './dialogs/project-dialog/project-dialog.component';
 
 @Component({
@@ -9,13 +11,25 @@ import { ProjectDialogComponent } from './dialogs/project-dialog/project-dialog.
 })
 export class ProjectInformationComponent implements OnInit {
 
-  constructor(private dialog: NbDialogService) { }
+  constructor(private dialog: NbDialogService, private projectService: ProjectService) { }
+
+  projects: Array<Project> = [];
 
   ngOnInit(): void {
+    this.loadProjects();
+  }
+
+  loadProjects() {
+    this.projectService.getProjects().then((projects) => {
+      this.projects = (projects['projects'] as Array<Project>);
+    })
   }
 
   openCreateProjectDialog() {
-    this.dialog.open(ProjectDialogComponent, { closeOnBackdropClick: true, hasBackdrop: true });
+    let dlg = this.dialog.open(ProjectDialogComponent, { closeOnBackdropClick: true, hasBackdrop: true });
+    dlg.onClose.subscribe(() => {
+      this.loadProjects();
+    });
   }
 
 }

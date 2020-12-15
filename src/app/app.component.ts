@@ -78,8 +78,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.auth.authState.subscribe(async (user) => {
       this.currentUser = user;
-      let pro = (await this.projectService.getProjects());
-      console.log(pro);
+      this.projects = (await this.projectService.getProjects())['projects'];
     });
   }
 
