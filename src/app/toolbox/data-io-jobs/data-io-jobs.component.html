@@ -1,19 +1,16 @@
 <h1>I/O Jobs</h1>
-<nb-card>
-  <nb-card-header>Job ID: 123458-27349-28493</nb-card-header>
+<nb-card *ngFor="let id of jobIds; let i = index" [status]="getColorStatus(i)">
+  <nb-card-header>Job ID: {{id}}</nb-card-header>
   <nb-card-body>
-    Download file:....
+    {{jobList[i].state.info}}
   </nb-card-body>
+
   <nb-card-footer>
-    <button nbButton status="danger" style="float: right;">Abort</button>
+    <button *ngIf="jobList[i].state.status=='start'" nbButton status="danger" style="float: right;">Abort</button>
+    <button *ngIf="jobList[i].state.status!='start'" nbButton status="basic" style="float: right;">Remove</button>
+  </nb-card-footer>
+  <nb-card-footer>
+    <nb-progress-bar [value]="getPercent(i)" size="tiny" status="success" fullWidth></nb-progress-bar>
   </nb-card-footer>
 </nb-card>
-<nb-card>
-  <nb-card-header>Job ID: 123458-27349-28493</nb-card-header>
-  <nb-card-body>
-    Download file:....
-  </nb-card-body>
-  <nb-card-footer>
-    <button nbButton status="danger" style="float: right;">Abort</button>
-  </nb-card-footer>
-</nb-card>
+<p *ngIf="jobIds.length==0">Job list is empty</p>

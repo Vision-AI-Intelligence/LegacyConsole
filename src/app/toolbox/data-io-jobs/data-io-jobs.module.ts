@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DataIOJobsRoutingModule } from './data-io-jobs-routing.module';
 import { DataIOJobsComponent } from './data-io-jobs.component';
-import { NbButtonModule, NbCardModule, NbIconModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbIconModule, NbProgressBarModule, NbToastrModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -13,7 +13,9 @@ import { NbButtonModule, NbCardModule, NbIconModule } from '@nebular/theme';
     DataIOJobsRoutingModule,
     NbButtonModule,
     NbIconModule,
-    NbCardModule
+    NbCardModule,
+    NbToastrModule,
+    NbProgressBarModule
   ]
 })
 export class DataIOJobsModule { }
