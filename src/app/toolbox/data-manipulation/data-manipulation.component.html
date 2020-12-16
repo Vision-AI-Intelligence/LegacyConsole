@@ -1,1 +1,30 @@
-<p>data-manipulation works!</p>
+<h1>Storage Drive</h1>
+<nb-card>
+  <nb-card-body>
+    <nb-actions size="small">
+      <nb-action icon="chevron-left" (click)="undo()"></nb-action>
+      <nb-action icon="chevron-right" (click)="redo()"></nb-action>
+      <nb-action style="width:70vw; font-size:1.2rem;">
+        drive://{{dirArrayToString()}}
+      </nb-action>
+      <nb-action icon="cloud-upload"></nb-action>
+      <nb-action icon="download" (click)="openDownloadDialog()"></nb-action>
+    </nb-actions>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item *ngFor="let folder of folders" (click)="openFolder(folder)" [nbContextMenu]="fileMenu"
+        nbContextMenuTrigger="noop" (contextmenu)="open(folder)">
+        <nb-icon icon="folder" style="margin-right: 10px;"></nb-icon>
+        {{folder}}
+      </nb-list-item>
+      <nb-list-item *ngFor="let file of files" [nbContextMenu]="fileMenu" nbContextMenuTrigger="noop"
+        (contextmenu)="open(file)">
+        <nb-icon icon="file" style="margin-right: 10px;"></nb-icon>
+        {{file}}
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

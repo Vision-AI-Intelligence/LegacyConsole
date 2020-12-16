@@ -1,0 +1,16 @@
+<nb-card style="width: 50vw;">
+  <nb-card-header>
+    Download file
+  </nb-card-header>
+  <nb-card-body>
+    <nb-form-field>
+      <input nbInput placeholder="File download URL" [formControl]="urlControl" fullWidth>
+    </nb-form-field>
+    <nb-form-field>
+      <input nbInput placeholder="File name" [formControl]="filenameControl" fullWidth>
+    </nb-form-field>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="createDownloadJob()" status="primary" fullWidth>Start download job</button>
+  </nb-card-footer>
+</nb-card>

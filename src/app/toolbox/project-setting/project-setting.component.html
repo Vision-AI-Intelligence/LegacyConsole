@@ -5,7 +5,8 @@
   </nb-card-header>
   <nb-card-body>
     <p>Storage drive keep datasets of the project</p>
-    <button nbButton status="primary">Init new storage drive</button>
+    <button *ngIf="!bucketExists" (click)="createBucket()" nbButton status="primary">Init new storage drive</button>
+    <button *ngIf="bucketExists" nbButton status="success">Storage drive is ready</button>
   </nb-card-body>
 </nb-card>
 <nb-card status="danger">
@@ -14,7 +15,7 @@
   </nb-card-header>
   <nb-card-body>
     <p>Deleting all data in the project cannot prevent!</p>
-    <button nbButton status="danger">Delete storage drive</button>
+    <button nbButton (click)="deleteBucket()" status="danger">Delete storage drive</button>
     <br>
     <p>Deleted project cannot recovery!</p>
     <button nbButton status="danger" (click)="deleteProject()">Delete project</button>
