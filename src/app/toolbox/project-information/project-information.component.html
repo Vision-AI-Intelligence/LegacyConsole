@@ -6,13 +6,16 @@
   <nb-card *ngFor="let project of projects">
     <nb-card-header>
       {{project.id}}
+      <button nbButton style="float: right;" (click)="openUpdateProjectDialog(project)">
+        <nb-icon icon="edit"></nb-icon>
+      </button>
     </nb-card-header>
     <nb-card-body>
       {{project.name}}
       <p>{{project.description}}</p>
     </nb-card-body>
     <nb-card-footer>
-      <button nbButton status="primary" fullWidth>Select</button>
+      <button nbButton status="primary" fullWidth (click)="selectProject(project)">Select</button>
     </nb-card-footer>
   </nb-card>
 </div>

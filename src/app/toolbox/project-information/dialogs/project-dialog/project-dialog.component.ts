@@ -22,6 +22,8 @@ export class ProjectDialogComponent implements OnInit {
     description: ""
   };
 
+  mode = "create";
+
   ngOnInit(): void {
     this.idControl = new FormControl(this.project.id, [Validators.required, Validators.pattern("[a-zA-Z0-9\-\_]*")]);
     this.nameControl = new FormControl(this.project.name, [Validators.required]);
@@ -49,6 +51,21 @@ export class ProjectDialogComponent implements OnInit {
     }
     catch (err) {
       this.toast.danger(err.error.message, `Cannot create project [${this.idControl.value}]`);
+    }
+  }
+
+  async updateProject() {
+    if (!this.nameControl.valid) {
+      this.toast.danger("Require project name", "Project name");
+      return;
+    }
+    try {
+      await this.projectService.updateProject({ id: this.idControl.value, name: this.nameControl.value, description: this.descriptionControl.value });
+      this.toast.success(`Project [${this.idControl.value}] was updated`, "Success");
+      this.dialog.close();
+    }
+    catch (err) {
+      this.toast.danger(err.error.message, `Cannot update project [${this.idControl.value}]`);
     }
   }
 

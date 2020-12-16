@@ -75,10 +75,17 @@ export class AppComponent implements OnInit {
   ];
   constructor(public sidebarService: NbSidebarService, public auth: AngularFireAuth, public projectService: ProjectService) { }
 
+  selectedProject = null;
+
   ngOnInit(): void {
     this.auth.authState.subscribe(async (user) => {
       this.currentUser = user;
       this.projects = (await this.projectService.getProjects())['projects'];
+    });
+
+    this.projectService.onSelecteProjectChange.on("selected", (project) => {
+      this.selectedProject = project.id;
+      console.log(project);
     });
   }
 

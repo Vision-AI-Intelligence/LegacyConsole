@@ -7,9 +7,8 @@
     <img src="../assets/Icon-White@500x.png" style="width: 30px;margin-right: 30px;" />
     Vision Intelligence Console
     <div style="flex:1 auto;"></div>
-    <nb-select placeholder="Select project" shape="rectangle" style="border-radius: 0;" size="small">
-      <nb-option value="0">Demo 1</nb-option>
-      <nb-option value="1">X-Ray Chest</nb-option>
+    <nb-select placeholder="Select project" shape="rectangle" style="border-radius: 0;" size="small"
+      [selected]="selectedProject">
       <nb-option *ngFor="let project of projects" [value]="project.id">{{project.name}}</nb-option>
     </nb-select>
     <button *ngIf="!currentUser" (click)="login()" nbButton size="small" shape="rectangle" style="border-radius: 0;">

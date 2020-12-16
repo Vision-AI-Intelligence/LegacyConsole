@@ -1,1 +1,22 @@
-<p>project-setting works!</p>
+<h1>Project Setting</h1>
+<nb-card>
+  <nb-card-header>
+    <h2>Storage Drive</h2>
+  </nb-card-header>
+  <nb-card-body>
+    <p>Storage drive keep datasets of the project</p>
+    <button nbButton status="primary">Init new storage drive</button>
+  </nb-card-body>
+</nb-card>
+<nb-card status="danger">
+  <nb-card-header>
+    <h2 style="color:#fff;">Danger Zone</h2>
+  </nb-card-header>
+  <nb-card-body>
+    <p>Deleting all data in the project cannot prevent!</p>
+    <button nbButton status="danger">Delete storage drive</button>
+    <br>
+    <p>Deleted project cannot recovery!</p>
+    <button nbButton status="danger" (click)="deleteProject()">Delete project</button>
+  </nb-card-body>
+</nb-card>
