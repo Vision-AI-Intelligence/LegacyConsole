@@ -1,0 +1,13 @@
+<nb-card style="width: 50vw;">
+  <nb-card-header>
+    Create new training
+  </nb-card-header>
+  <nb-card-body>
+    <input nbInput placeholder="Train name" fullWidth [formControl]="trainControl">
+    <textarea nbInput placeholder="Pipeline Config Text" style="height: 70vh;" fullWidth
+      [(ngModel)]="configPipeline"></textarea>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="primary" (click)="createTrain()">Create</button>
+  </nb-card-footer>
+</nb-card>

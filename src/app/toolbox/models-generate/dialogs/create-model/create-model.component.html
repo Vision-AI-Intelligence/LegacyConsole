@@ -1,0 +1,22 @@
+<nb-card style="width: 50vw;">
+  <nb-card-header>Create new model</nb-card-header>
+  <nb-card-body>
+    <nb-form-field style="width: 100%;">
+      <nb-select placeholder="Select model architect" [(ngModel)]="selectedModel">
+        <nb-option *ngFor="let model of models" [value]="model">{{model.name}}</nb-option>
+      </nb-select>
+    </nb-form-field>
+    <nb-form-field>
+      <input nbInput [formControl]="urlControl" placeholder="Model URL" [value]="selectedModel['url']" fullWidth>
+    </nb-form-field>
+    <nb-form-field>
+      <input nbInput [formControl]="nameControl" placeholder="Model name" fullWidth>
+    </nb-form-field>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="createModel()">
+      <nb-icon icon="plus-circle"></nb-icon>
+      Create
+    </button>
+  </nb-card-footer>
+</nb-card>

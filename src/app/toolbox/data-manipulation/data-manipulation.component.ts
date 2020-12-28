@@ -4,6 +4,7 @@ import { NbContextMenuDirective, NbDialogService, NbMenuService, NbPosition, NbT
 import { AuthService } from 'src/app/services/auth.service';
 import { BucketService } from 'src/app/services/bucket.service';
 import { DownloadDialogComponent } from './dialogs/download-dialog/download-dialog.component';
+import { GenerateTFRecordComponent } from './dialogs/generate-tfrecord/generate-tfrecord.component';
 
 @Component({
   selector: 'app-data-manipulation',
@@ -24,6 +25,22 @@ export class DataManipulationComponent implements OnInit {
           this.toast.danger(err.error.message, `Cannot delete ${this.selectedFile}`);
         });
       }
+      else if (item.item.title == "Zip") {
+        this.bucket.zip(this.dirArrayToString() + this.selectedFile).then(() => {
+          this.toast.info(`Zipping ${this.selectedFile}`, "Action");
+          this.walk();
+        }).catch(err => {
+          this.toast.danger(err.error.message, `Cannot zip ${this.selectedFile}`);
+        })
+      }
+      else if (item.item.title == "Unzip") {
+        this.bucket.unzip(this.dirArrayToString() + this.selectedFile).then(() => {
+          this.toast.info(`Unzipping ${this.selectedFile}`, "Action");
+          this.walk();
+        }).catch(err => {
+          this.toast.danger(err.error.message, `Cannot unzip ${this.selectedFile}`);
+        })
+      }
     });
   }
 
@@ -31,7 +48,7 @@ export class DataManipulationComponent implements OnInit {
 
   selectedFile = null;
 
-  fileMenu = [{ title: "Delete" }, { title: "Zip" }, { title: "Unzip" }, { title: "Download" }]
+  fileMenu = [{ title: "Delete" }, { title: "Zip" }, { title: "Unzip" }, { title: "Download" }];
 
   currentDir = [];
   files = [];
@@ -70,7 +87,6 @@ export class DataManipulationComponent implements OnInit {
   }
 
   open(file) {
-    this.contextMenu.position = NbPosition.BOTTOM
     this.contextMenu.show();
     this.selectedFile = file;
     return false;
@@ -78,6 +94,10 @@ export class DataManipulationComponent implements OnInit {
 
   public openDownloadDialog() {
     this.dialog.open(DownloadDialogComponent, { context: { dir: this.dirArrayToString() } });
+  }
+
+  public opeGenerateTFRecordDialog() {
+    this.dialog.open(GenerateTFRecordComponent);
   }
 
   @HostListener('document:click')

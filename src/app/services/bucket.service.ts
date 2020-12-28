@@ -56,4 +56,34 @@ export class BucketService {
     }).toPromise();
   }
 
+  public zip(filename) {
+    let prj = this.project.getSelectedProject();
+    return this.httpClient.post(`${environment.gateway}/v1/bucket/runner/zip?pid=${prj.id}`, {
+      filename: filename
+    }, {
+      headers: {
+        Authorization: this.auth.getIdToken()
+      }
+    }).toPromise();
+  }
+  public unzip(filename) {
+    let prj = this.project.getSelectedProject();
+    return this.httpClient.post(`${environment.gateway}/v1/bucket/runner/unzip?pid=${prj.id}`, {
+      filename: filename
+    }, {
+      headers: {
+        Authorization: this.auth.getIdToken()
+      }
+    }).toPromise();
+  }
+
+  public downloadFile(filename) {
+    let prj = this.project.getSelectedProject();
+    return this.httpClient.get(`${environment.gateway}/v1/bucket/runner/download?pid=${prj.id}&dir=${filename}`, {
+      headers: {
+        Authorization: this.auth.getIdToken()
+      }
+    }).toPromise();
+  }
+
 }

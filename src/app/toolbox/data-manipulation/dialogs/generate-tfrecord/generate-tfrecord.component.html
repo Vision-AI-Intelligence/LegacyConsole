@@ -1,0 +1,26 @@
+<nb-card style="width:50vw;">
+  <nb-card-header>Generate TF Record</nb-card-header>
+  <nb-card-body>
+    <!--
+          path_to_annotation: str
+          path_to_images: str
+          path_to_label_map: str
+          path_to_tfrecord: str
+    -->
+    <nb-form-field>
+      <input nbInput [formControl]="annotationControl" placeholder="Path to annotation files" fullWidth>
+    </nb-form-field>
+    <nb-form-field>
+      <input nbInput [formControl]="imagesControl" placeholder="Path to images" fullWidth>
+    </nb-form-field>
+    <nb-form-field>
+      <input nbInput [formControl]="labelMapControl" placeholder="Path to label map" fullWidth>
+    </nb-form-field>
+    <nb-form-field>
+      <input nbInput [formControl]="tfrecordControl" placeholder="Path to save TF Record" fullWidth>
+    </nb-form-field>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="createTFRecord()" status="primary">Generate</button>
+  </nb-card-footer>
+</nb-card>

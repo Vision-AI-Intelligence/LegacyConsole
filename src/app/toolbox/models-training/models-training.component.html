@@ -1,0 +1,44 @@
+<nb-card>
+  <nb-card-body>
+    <nb-actions size="small">
+      <nb-action>
+        <nb-select placeholder="Select model" size="small" [selected]="selectedModel"
+          (selectedChange)="onSelectModel($event)">
+          <nb-option *ngFor="let model of models" [value]="model">{{model}}</nb-option>
+        </nb-select>
+      </nb-action>
+      <nb-action>
+        <button nbButton status="primary" size="small" (click)="onOpenCreateNewTrainingDialog()">Create new
+          training</button>
+      </nb-action>
+    </nb-actions>
+  </nb-card-body>
+</nb-card>
+<h2>Training list</h2>
+<nb-card *ngFor="let train of trains" style="width: 100%;">
+  <nb-card-header>
+    <div *ngIf="isTraining(train)" style="float: right;" class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    {{train}}
+  </nb-card-header>
+  <nb-card-body>
+    <p *ngIf="isTraining(train)">
+      Elapsed time: {{getHMS(getTrainInfo(train)['elapsed_time']/1000)}}s
+    </p>
+  </nb-card-body>
+  <nb-card-footer>
+    <div style="float: right;">
+      <button nbButton style="margin-right: 10px;" (click)="clickStartTrain(train)">
+        Start train
+      </button>
+      <button nbButton style="margin-right: 10px;" status="success">Export model</button>
+      <button nbButton status="danger" style="margin-right: 10px;">Stop train</button>
+      <button nbButton status="danger" style="margin-right: 10px;">Delete</button>
+    </div>
+
+  </nb-card-footer>
+</nb-card>

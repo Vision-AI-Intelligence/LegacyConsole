@@ -1,1 +1,48 @@
-<p>models-inference works!</p>
+<nb-card>
+  <nb-card-body>
+    <nb-actions size="small">
+      <nb-action>
+        <nb-select placeholder="Select model" size="small" [selected]="selectedModel"
+          (selectedChange)="onSelectModel($event)">
+          <nb-option *ngFor="let model of models" [value]="model">{{model}}</nb-option>
+        </nb-select>
+      </nb-action>
+      <nb-action>
+        <nb-select placeholder="Select train" size="small" [selected]="selectedTrain"
+          (selectedChange)="onSelectTrain($event)">
+          <nb-option *ngFor="let train of trains" [value]="train">{{train}}</nb-option>
+        </nb-select>
+      </nb-action>
+      <nb-action>
+        <button nbButton status="primary" size="small" (click)="onOpenInferDialog()">Inference</button>
+      </nb-action>
+    </nb-actions>
+  </nb-card-body>
+</nb-card>
+<h2>Preview result</h2>
+<nb-card>
+  <nb-card-body>
+    <nb-actions size="small">
+      <nb-action>
+        <button nbButton (click)="goBackPreview()">
+          <nb-icon icon="arrow-left-outline"></nb-icon>
+        </button>
+      </nb-action>
+      <nb-action>
+        <p *ngIf="previewFiles.length!=0">{{previewFiles[previewCurrentIndex]}}</p>
+      </nb-action>
+      <nb-action>
+        <button nbButton (click)="goForwardPreview()">
+          <nb-icon icon="arrow-right-outline"></nb-icon>
+        </button>
+      </nb-action>
+      <nb-action>
+        <input nbInput placeholder="Output Directory" [formControl]="outputDirControl">
+      </nb-action>
+      <nb-action>
+        <button nbButton status="primary" size="small" (click)="onLoadPreview()">Load preview</button>
+      </nb-action>
+    </nb-actions>
+  </nb-card-body>
+</nb-card>
+<img [src]="previewImage">

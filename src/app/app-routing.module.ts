@@ -7,9 +7,10 @@ const routes: Routes = [
   { path: 'data-io-jobs', loadChildren: () => import('./toolbox/data-io-jobs/data-io-jobs.module').then(m => m.DataIOJobsModule) },
   { path: 'data-manipulation', loadChildren: () => import('./toolbox/data-manipulation/data-manipulation.module').then(m => m.DataManipulationModule) },
   { path: 'models-generate', loadChildren: () => import('./toolbox/models-generate/models-generate.module').then(m => m.ModelsGenerateModule) },
-  { path: 'models-trainning', loadChildren: () => import('./toolbox/models-trainning/models-trainning.module').then(m => m.ModelsTrainningModule) },
+  { path: 'models-training', loadChildren: () => import('./toolbox/models-training/models-training.module').then(m => m.ModelsTrainingModule) },
   { path: 'models-ml-jobs', loadChildren: () => import('./toolbox/models-ml-jobs/models-ml-jobs.module').then(m => m.ModelsMLJobsModule) },
-  { path: 'models-inference', loadChildren: () => import('./toolbox/models-inference/models-inference.module').then(m => m.ModelsInferenceModule) }];
+  { path: 'models-inference', loadChildren: () => import('./toolbox/models-inference/models-inference.module').then(m => m.ModelsInferenceModule) },
+  { path: 'models-training', loadChildren: () => import('./toolbox/models-training/models-training.module').then(m => m.ModelsTrainingModule) }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

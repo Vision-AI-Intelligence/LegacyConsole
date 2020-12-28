@@ -29,4 +29,12 @@ export class JobService {
       .snapshotChanges();
   }
 
+  public async removeJob(jobId, type) {
+    let prj = this.project.getSelectedProject();
+    await this.firestore
+      .collection("projects")
+      .doc(prj.id)
+      .collection(`jobs-${type}`).doc(jobId).delete();
+  }
+
 }

@@ -6,10 +6,11 @@ import { DataManipulationComponent } from './data-manipulation.component';
 import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbListModule, NbToastrModule } from '@nebular/theme';
 import { DownloadDialogComponent } from './dialogs/download-dialog/download-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GenerateTFRecordComponent } from './dialogs/generate-tfrecord/generate-tfrecord.component';
 
 
 @NgModule({
-  declarations: [DataManipulationComponent, DownloadDialogComponent],
+  declarations: [DataManipulationComponent, DownloadDialogComponent, GenerateTFRecordComponent],
   imports: [
     CommonModule,
     DataManipulationRoutingModule,

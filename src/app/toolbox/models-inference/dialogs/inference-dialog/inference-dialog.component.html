@@ -1,0 +1,14 @@
+<nb-card style="width: 50vw;">
+  <nb-card-header>
+    Start Inference
+  </nb-card-header>
+  <nb-card-body>
+    <input nbInput placeholder="Label Map dir" fullWidth [formControl]="labelMapDirControl">
+    <input nbInput placeholder="Input dir" fullWidth [formControl]="inputDirControl">
+    <input nbInput placeholder="Output dir" fullWidth [formControl]="outputDirControl">
+
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="primary" (click)="startInfer()">Create</button>
+  </nb-card-footer>
+</nb-card>

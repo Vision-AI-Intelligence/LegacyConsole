@@ -1,0 +1,4 @@
+.models-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 300px));
+}

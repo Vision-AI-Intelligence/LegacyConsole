@@ -1,1 +1,14 @@
-<p>models-generate works!</p>
+<h1>Generate ML Models</h1>
+No model
+<div class="models-grid">
+  <nb-card *ngFor="let model of models; let i = index">
+    <nb-card-header>{{model}}</nb-card-header>
+    <nb-card-body *ngIf="isDownloadingModel(model)">
+      <nb-progress-bar [value]="getPercent(i)" status='primary' size="small"></nb-progress-bar>
+    </nb-card-body>
+  </nb-card>
+</div>
+<button nbButton (click)="openCreateModelDialog()" status="primary">
+  <nb-icon icon="plus-circle"></nb-icon>
+  Create new model
+</button>
